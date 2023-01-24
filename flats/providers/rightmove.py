@@ -12,9 +12,6 @@ PROPERTY_URL = "https://www.rightmove.co.uk/properties/{}"
 
 
 class RightMoveProvider(Provider):
-    def __init__(self) -> None:
-        self.flats: Set[Flat] = set()
-
     @property
     def name(self) -> str:
         return "RightMove"

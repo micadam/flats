@@ -14,6 +14,13 @@ class Flat:
     agency: str
     url: str
 
+    @property
+    def price_int(self) -> int:
+        return int(self.price
+                   .replace(',', '')
+                   .replace('£', '')
+                   .replace('pcm', ''))
+
     def __eq__(self, other: Union['Flat', tuple]) -> bool:
         if not isinstance(other, (Flat, tuple)):
             return NotImplemented

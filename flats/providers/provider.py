@@ -1,5 +1,7 @@
 from abc import ABC
+import logging
 from typing import List, Set
+from colorama import Fore, Style
 
 import requests as r
 from bs4 import BeautifulSoup
@@ -10,6 +12,7 @@ from flats.flat import Flat
 class Provider(ABC):
     def __init__(self) -> None:
         self.flats: Set[Flat] = set()
+        self.logger = logging.getLogger(self.name)
 
     @property
     def name(self) -> str:
@@ -37,7 +40,8 @@ class Provider(ABC):
             if (self.name, idd) in self.flats:
                 continue
             flat = self.parse_flat(property)
-            print(f"New flat: {flat}")
+            color = Fore.GREEN if flat.price_int <= 1350 else Fore.RED
+            self.logger.info(f"New flat:\n{color}{flat}{Style.RESET_ALL}")
             new_flats = True
             self.flats.add(flat)
         return new_flats

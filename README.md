@@ -6,5 +6,5 @@ Currently queries Zoopla and Rightmove, might add more services later. Periodica
 
 ## Usage
 ```
-$python_cmd -m flats
+python -m flats
 ```
